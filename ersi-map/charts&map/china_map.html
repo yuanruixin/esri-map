@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/base.css">
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/china.js"></script>
+    <meta charset="utf-8">
+    <title>中国碳排放量地图</title>
+
+    <style>
+       
+        a:hover {
+            color: brown;
+        }
+
+        body {
+            background-image: url("./img/3.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+           
+
+        }
+
+        li {
+            height: 20px;
+            width: 1120px;
+            line-height: 20px;
+            margin: 0 5px;
+            list-style: none;
+            
+        }
+        .bottom_text{
+            /* padding-top: 3px; */
+            font-size: 15px;
+            color: white;
+        }
+        .map #box {
+            /* background-image:url("https://img-qn-0.51miz.com/preview/video/00/00/11/62/V-116263-683D39FB.jpg") ; */
+            /* top: 90px; */
+            margin: 0px auto;
+            border: 1px solid rgba(0, 0, 0, .3) ;
+            background-color: rgba(255, 255, 255,.3);
+        }
+
+        .bottom_bar {
+            
+            position: relative;
+            left: 30px;
+            text-align: left;
+            top: 20px;
+            width: 1100px;
+            height: 40px;
+            background-color: rgba(244, 244, 244, .3);
+            border: 1px solid rgba(0, 0, 0, .3) ;
+        }
+
+        .map {
+            left: 180px;
+            width: 1190px; height: 700px;
+            position: absolute;
+            /* background-color: blue; */
+           
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="map">
+        <div id="box" style="width: 1120px; height: 600px;">
+            <script>
+                // 初始化echarts实例
+                var myEcharts = echarts.init(document.getElementById("box"));
+                var option = {
+                    title: {  //标题样式
+                        text: '2020中国碳排放地图',
+                        x: "center",
+                        y:"20px",
+                        textStyle: {
+                            fontSize: 25,
+                            color: "black"
+                        },
+
+                    },
+                    tooltip: {  //这里设置提示框
+                        trigger: 'item',  //数据项图形触发
+                        backgroundColor: "pink",  //提示框浮层的背景颜色。
+                        //字符串模板(地图): {a}（系列名称），{b}（区域名称），{c}（合并数值）,{d}（无）
+                        formatter: '地区：{b}<br/>碳排放：{c}万吨'
+                    },
+                    visualMap: {//视觉映射组件
+                        top: 'center',
+                        left: 'left',
+                        min: 3000,
+                        max: 80000,
+                        text: ['High', 'Low'],
+                        realtime: false,  //拖拽时，是否实时更新
+                        calculable: true,  //是否显示拖拽用的手柄
+                        inRange: {
+                            color: ['lightskyblue', 'yellow', 'orangered']
+                        }
+                    },
+                    series: [
+                        {
+                            name: '碳排放',
+                            type: 'map',
+                            mapType: 'china',
+                            layoutSize: '200%',
+                            roam: true,//是否开启鼠标缩放和平移漫游
+                            itemStyle: {//地图区域的多边形 图形样式
+                                normal: {//是图形在默认状态下的样式
+                                    label: {
+                                        show: true,//是否显示标签
+                                        textStyle: {
+                                            color: "black"
+                                        }
+                                    }
+                                },
+                                zoom: 1,  //地图缩放比例,默认为1
+                                emphasis: {//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
+                                    label: { show: true }
+                                }
+                            },
+                            top: "3%",//组件距离容器的距离
+                            data: [
+                                { name: '北京', value: 13286.91 },
+                                { name: '天津', value: 16077.81 },
+                                { name: '上海', value: 22423.63 },
+                                { name: '重庆', value: 13164.66 },
+                                { name: '河北', value: 87193.96 },
+                                { name: '河南', value: 46246.02 },
+                                { name: '云南', value: 14616.23 },
+                                { name: '辽宁', value: 62011.77 },
+                                { name: '黑龙江', value: 25718.06 },
+                                { name: '湖南', value: 23626.81 },
+                                { name: '安徽', value: 35392.32 },
+                                { name: '山东', value: 90899.04 },
+                                { name: '新疆', value: 43282.45 },
+                                { name: '江苏', value: 78861.82 },
+                                { name: '浙江', value: 46914.22 },
+                                { name: '江西', value: 22902.29 },
+                                { name: '湖北', value: 23630.05 },
+                                { name: '广西', value: 18472.61 },
+                                { name: '甘肃', value: 15776.51 },
+                                { name: '山西', value: 51695.70 },
+                                { name: '内蒙古', value: 79288.16 },
+                                { name: '陕西', value: 28689.51 },
+                                { name: '吉林', value: 18124.66 },
+                                { name: '福建', value: 24535.04 },
+                                { name: '贵州', value: 22350.80 },
+                                { name: '广东', value: 69350.40 },
+                                { name: '青海', value: 3285.80 },
+                                { name: '西藏', value: 0 },
+                                { name: '四川', value: 22926.64 },
+                                { name: '宁夏', value: 20488.15 },
+                                { name: '海南', value: 4032.84 },
+                                { name: '台湾', value: 0 },
+                                { name: '香港', value: 0 },
+                                { name: '澳门', value: 0 },
+                                { name: '南海诸岛', value: 0 }
+                            ],
+                            // LayoutSize:11200,
+
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myEcharts.setOption(option);
+
+            </script>
+        </div>
+            <div class="bottom_bar">
+                <li>碳排放数据来源：
+                    <a href="https://www.ipe.org.cn/">蔚蓝地图</a>
+                </li>
+
+                <li class="bottom_text">注: 西藏、台湾、香港、澳门数据缺失</li>
+            
+        </div>
+    </div>
+
+
+</body>
+
+</html>

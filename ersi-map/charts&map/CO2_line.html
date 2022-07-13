@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/base.css">
+    <meta charset="utf-8">
+    <title>世界碳排放量地图</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+
+    <style>
+        #main {
+            margin: 50px 350px;
+            min-width: 1190px;
+            border: 1px solid rgba(0, 0 , 0,.3);
+            /* background-color: rgb(166, 161, 103); */
+            /* background-image: url(./R-C.jfif); */
+        }
+        
+        .circle{
+           display:inline-block;position:left;background-color:rgb(50, 12, 113);width:9px;height:9px;border-radius:50%;
+        }
+       
+        
+        .bottom_bar{
+
+            width: 1190px;
+            height: 50px;
+            line-height: 50px;
+            /* background-color: aqua; */
+        }
+        .left_area{
+            /* position: absolute; */
+            float: left;
+            width: 350px;
+            min-width: 350px;
+            height: 600px;
+            /* border: 1px black solid; */
+            box-shadow: 10px 10px 10px rgb(150, 124, 124);
+            background-color: rgba(220, 244, 244,.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left_area">
+        <li>测试文本：</li>
+        <br>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, minima iusto, ratione, voluptates temporibus dolorem quasi voluptatibus repudiandae vel placeat omnis? Reprehenderit enim fugit harum quo consectetur natus, perspiciatis qui.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, minima iusto, ratione, voluptates temporibus dolorem quasi voluptatibus repudiandae vel placeat omnis? Reprehenderit enim fugit harum quo consectetur natus, perspiciatis qui.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, minima iusto, ratione, voluptates temporibus dolorem quasi voluptatibus repudiandae vel placeat omnis? Reprehenderit enim fugit harum quo consectetur natus, perspiciatis qui.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, minima iusto, ratione, voluptates temporibus dolorem quasi voluptatibus repudiandae vel placeat omnis? Reprehenderit enim fugit harum quo consectetur natus, perspiciatis qui.</li>
+    </div>
+    
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1100px;height:600px;">
+       
+    
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            color: ["orange"],
+            title: {
+                x: "center",
+                text: '1750-2020年 全球碳排放量变化图'
+            },
+            // 设置网格样式
+            grid: {
+                // top: '20%',
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                // show: true,// 显示边框
+                borderColor: '#012f4a',// 边框颜色
+                containLabel: true // 包含刻度文字在内
+            },
+            // 设置提示框属性
+            tooltip: {
+
+                textStyle: {
+                    color: 'black'
+                },
+                // 设置触发机制 只需在一条直线上即可触发
+                trigger: "axis",
+                color: "black",
+                backgroundColor: 'white',
+                boderColor: "#E1E1E1",
+                borderWidth: 0.2,
+                formatter: '&nbsp&nbsp 日期：{b} <br /><span class="circle"></span> 排放量： {c0}' + "亿吨",
+            },
+
+            legend: {
+                y: "20px",
+                data: ['碳排放量']
+            },
+            xAxis: {
+
+                data: ["1750", "1800", "1850", "1900", "1950", "2000", "2020"]
+            },
+            yAxis: {
+                type: "value",
+                axisLabel: {
+                    //这种做法就是在y轴的数据的值旁边拼接单位，貌似也挺方便的
+                    formatter: "{value} 亿吨",
+                },
+            },
+            series: [{
+                name: '碳排放量',
+                smooth: true,
+
+                type: 'line',
+                data: [9e-4, 28E-4, 196e-4, 1.95, 6.00, 25.23, 34.81],
+                areaStyle:{
+                        color:"pink"
+                },
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        
+    </script>
+     <div class="bottom_bar">
+        <li>数据来源：
+            <a href="https://ourworldindata.org/">Our World in Data</a>
+        </li>
+    </div>
+    </div>
+</body>
+
+</html>
+
