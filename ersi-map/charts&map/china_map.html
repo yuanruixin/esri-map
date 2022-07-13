@@ -14,14 +14,6 @@
             color: brown;
         }
 
-        body {
-            background-image: url("./img/3.jpg");
-            background-size: 100%;
-            background-repeat: no-repeat;
-           
-
-        }
-
         li {
             height: 20px;
             width: 1120px;
@@ -31,13 +23,13 @@
             
         }
         .bottom_text{
-            /* padding-top: 3px; */
+           
             font-size: 15px;
-            color: white;
+            color: rgb(136, 92, 92);
         }
         .map #box {
-            /* background-image:url("https://img-qn-0.51miz.com/preview/video/00/00/11/62/V-116263-683D39FB.jpg") ; */
-            /* top: 90px; */
+            background-image: url("./img/3.jpg");
+            background-size: 1120px 600px;
             margin: 0px auto;
             border: 1px solid rgba(0, 0, 0, .3) ;
             background-color: rgba(255, 255, 255,.3);
@@ -49,9 +41,9 @@
             left: 30px;
             text-align: left;
             top: 20px;
-            width: 1100px;
+            width: 1120px;
             height: 40px;
-            background-color: rgba(244, 244, 244, .3);
+            background-color: rgba(116, 134, 160, 0.304);
             border: 1px solid rgba(0, 0, 0, .3) ;
         }
 
@@ -59,7 +51,7 @@
             left: 180px;
             width: 1190px; height: 700px;
             position: absolute;
-            /* background-color: blue; */
+           
            
         }
     </style>
@@ -73,13 +65,14 @@
                 // 初始化echarts实例
                 var myEcharts = echarts.init(document.getElementById("box"));
                 var option = {
+                    backgroundColor: "rgb(1,20,57)",
                     title: {  //标题样式
                         text: '2020中国碳排放地图',
                         x: "center",
                         y:"20px",
                         textStyle: {
                             fontSize: 25,
-                            color: "black"
+                            color: "white"
                         },
 
                     },
@@ -95,10 +88,13 @@
                         min: 3000,
                         max: 80000,
                         text: ['High', 'Low'],
+                        textStyle: {
+                                            color: "rgb(230,232,236)"
+                                        },
                         realtime: false,  //拖拽时，是否实时更新
                         calculable: true,  //是否显示拖拽用的手柄
                         inRange: {
-                            color: ['lightskyblue', 'yellow', 'orangered']
+                            color: ["rgb(121,191,255)", "rgb(37,62,252)",]
                         }
                     },
                     series: [
@@ -113,7 +109,7 @@
                                     label: {
                                         show: true,//是否显示标签
                                         textStyle: {
-                                            color: "black"
+                                            color: "rgb(230,232,236)"
                                         }
                                     }
                                 },
